@@ -4,29 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Connexion via Google</title>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script>
-      function handleCredentialResponse(response) {
-        console.log("Encoded JWT ID token: " + response.credential);
-        // Envoyer le jeton JWT au serveur pour vérification et authentification
-      }
-
-      window.onload = function () {
-        google.accounts.id.initialize({
-          client_id:
-            "372369236263-m1j8609of6jej41bjt02vppt3g0np9is.apps.googleusercontent.com",
-          callback: handleCredentialResponse,
-        });
-        google.accounts.id.renderButton(
-          document.getElementById("buttonDiv"),
-          { theme: "outline", size: "large" } // options here
-        );
-        google.accounts.id.prompt(); // Affiche l'invite de connexion automatiquement
-      };
-    </script>
-  </head>
-  <body>
-    <h1>Connexion via Google</h1>
-    <div id="buttonDiv"></div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <meta name="google-signin-client_id" content="372369236263-nfmm5ujqj5fuukbo49ua9ie375bdkrfv.apps.googleusercontent.com">
+    <script>function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+      }</script>
+ <a href="#" onclick="signOut();">Sign out</a>
+ <script>
+   function signOut() {
+     var auth2 = gapi.auth2.getAuthInstance();
+     auth2.signOut().then(function () {
+       console.log('User signed out.');
+     });
+   }
+ </script>
   </body>
 </html>
+372369236263-m1j8609of6jej41bjt02vppt3g0np9is.apps.googleusercontent.com
