@@ -1,28 +1,260 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Connexion via Google</title>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <meta name="google-signin-client_id" content="692712663166-l3sel8sjnj9cl4nkkkcarni0oop6lqdp.apps.googleusercontent.com">
-    <script>function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-      }</script>
- <a href="#" onclick="signOut();">Sign out</a>
- <script>
-   function signOut() {
-     var auth2 = gapi.auth2.getAuthInstance();
-     auth2.signOut().then(function () {
-       console.log('User signed out.');
-     });
-   }
- </script>
-  </body>
-</html>
-372369236263-m1j8609of6jej41bjt02vppt3g0np9is.apps.googleusercontent.com
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recettes simples et délicieuses à réaliser chez soi.">
+    <title>Recettes Gourmandes</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #ff7f50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+
+        nav {
+            text-align: center;
+            background-color: #333;
+            padding: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Content Area */
+        .content {
+            padding: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .recipe {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe h2 {
+            color: #ff7f50;
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .recipe p {
+            font-size: 1.1rem;
+        }
+
+        .ingredients, .instructions {
+            margin: 20px 0;
+        }
+
+        .ingredients ul, .instructions ol {
+            padding-left: 20px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            nav {
+                padding: 0.5rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+                margin: 0 10px;
+            }
+
+            .recipe h2 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 1.5rem;
+            }
+
+            .recipe p {
+                font-size: 1rem;
+            }
+
+            footer {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav a {
+                display: block;
+                margin: 5px 0;
+            }
+
+            .recipe h2 {
+                font-size: 1.6rem;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            .recipe p {
+                font-size: 0.95rem;
+            }
+
+            footer {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Recettes Gourmandes</h1>
+        <p>Des recettes simples et délicieuses à réaliser chez vous</p>
+    </header>
+
+    <nav>
+        <a href="#recipe1">Recette 1</a>
+        <a href="#recipe2">Recette 2</a>
+        <a href="#recipe3">Recette 3</a>
+    </nav>
+
+    <div class="content">
+        <div class="recipe" id="recipe1">
+            <h2>Salade de Quinoa et Avocat</h2>
+            <p><strong>Temps de préparation:</strong> 15 minutes</p>
+            <p><strong>Portions:</strong> 2</p>
+
+            <div class="ingredients">
+                <h3>Ingrédients</h3>
+                <ul>
+                    <li>100g de quinoa</li>
+                    <li>1 avocat mûr</li>
+                    <li>1 tomate</li>
+                    <li>1 cuillère à soupe d'huile d'olive</li>
+                    <li>Jus d'un citron</li>
+                    <li>Sel et poivre au goût</li>
+                </ul>
+            </div>
+
+            <div class="instructions">
+                <h3>Instructions</h3>
+                <ol>
+                    <li>Cuire le quinoa selon les instructions du paquet et laisser refroidir.</li>
+                    <li>Couper l'avocat et la tomate en dés.</li>
+                    <li>Dans un grand saladier, mélanger le quinoa, l'avocat et la tomate.</li>
+                    <li>Ajouter l'huile d'olive, le jus de citron, le sel et le poivre.</li>
+                    <li>Mélanger délicatement et servir frais.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="recipe" id="recipe2">
+            <h2>Pancakes à la Banane</h2>
+            <p><strong>Temps de préparation:</strong> 10 minutes</p>
+            <p><strong>Portions:</strong> 3-4 pancakes</p>
+
+            <div class="ingredients">
+                <h3>Ingrédients</h3>
+                <ul>
+                    <li>1 banane mûre</li>
+                    <li>2 œufs</li>
+                    <li>50g de farine</li>
+                    <li>1 cuillère à café de levure chimique</li>
+                    <li>1 cuillère à soupe de lait</li>
+                    <li>Beurre pour la cuisson</li>
+                </ul>
+            </div>
+
+            <div class="instructions">
+                <h3>Instructions</h3>
+                <ol>
+                    <li>Écraser la banane dans un bol et y ajouter les œufs. Mélanger.</li>
+                    <li>Ajouter la farine et la levure chimique, puis bien mélanger.</li>
+                    <li>Ajouter le lait et mélanger jusqu'à obtention d'une pâte lisse.</li>
+                    <li>Faire chauffer un peu de beurre dans une poêle et cuire les pancakes des deux côtés jusqu'à ce qu'ils soient dorés.</li>
+                    <li>Servir avec du sirop d'érable ou des fruits frais.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="recipe" id="recipe3">
+            <h2>Gâteau au Chocolat</h2>
+            <p><strong>Temps de préparation:</strong> 20 minutes</p>
+            <p><strong>Portions:</strong> 8-10 personnes</p>
+
+            <div class="ingredients">
+                <h3>Ingrédients</h3>
+                <ul>
+                    <li>200g de chocolat noir</li>
+                    <li>150g de sucre</li>
+                    <li>3 œufs</li>
+                    <li>100g de farine</li>
+                    <li>1 cuillère à café de vanille</li>
+                    <li>50g de beurre</li>
+                    <li>1 pincée de sel</li>
+                </ul>
+            </div>
+
+            <div class="instructions">
+                <h3>Instructions</h3>
+                <ol>
+                    <li>Faire fondre le chocolat et le beurre au bain-marie.</li>
+                    <li>Dans un bol, battre les œufs avec le sucre et la vanille jusqu'à ce que le mélange devienne mousseux.</li>
+                    <li>Ajouter le chocolat fondu, puis la farine tamisée et le sel.</li>
+                    <li>Verser la pâte dans un moule beurré et cuire à 180°C pendant 25-30 minutes.</li>
+                    <li>Laisser refroidir avant de démouler et de servir.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Recettes Gourmandes - Tous droits
